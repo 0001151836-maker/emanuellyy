@@ -454,8 +454,8 @@
             </div>
 
             <div class="photo-gallery" id="photoGallery">
-                <div class="photo"><img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?w=600" alt="Foto 1"></div>
-                <div class="photo"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600" alt="Foto 2"></div>
+                <div class="photo"><img src="images.jpg" alt="Foto 1"></div>
+                <div class="photo"><img src="Captura de tela 2025-10-22 133620.png" alt="Foto 2"></div>
                 <div class="photo"><img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600" alt="Foto 3"></div>
                 <div class="photo"><img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600" alt="Foto 4"></div>
                 <div class="photo"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600" alt="Foto 5"></div>
@@ -524,7 +524,7 @@
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 
-                for (let i = 0; i < 5; i++) {
+                 for (let i = 0; i < 5; i++) {
                     setTimeout(() => createHeart(this, x, y), i * 100);
                 }
             });
@@ -557,22 +557,14 @@
         }
 
 
-        gallery.addEventListener('touchend', () => {
-            setTimeout(() => {
-                userInteracting = false;
-                
-            }, 3000);
-        });
         
         gallery.addEventListener('mousedown', () => {
             userInteracting = true;
-
         });
         
         gallery.addEventListener('mouseup', () => {
             setTimeout(() => {
                 userInteracting = false;
-               
             }, 3000);
         });
 
@@ -584,31 +576,10 @@
             
             photos.forEach(photo => {
                 const photoRect = photo.getBoundingClientRect();
-                
-                // Se a foto saiu completamente pela esquerda
-                if (photoRect.right < galleryRect.left - 50) {
-                    isScrolling = true;
-                    const scrollBefore = gallery.scrollLeft;
-                    gallery.appendChild(photo);
-                    gallery.scrollLeft = scrollBefore - photo.offsetWidth - 10;
-                    setTimeout(() => isScrolling = false, 50);
-                }
-                // Se a foto saiu completamente pela direita (scroll reverso)
-                else if (photoRect.left > galleryRect.right + 50) {
-                    isScrolling = true;
-                    const scrollBefore = gallery.scrollLeft;
-                    gallery.insertBefore(photo, gallery.firstChild);
-                    gallery.scrollLeft = scrollBefore + photo.offsetWidth + 10;
-                    setTimeout(() => isScrolling = false, 50);
-                }
+             
             });
         });
         
-        // Iniciar auto scroll após splash screen
-        setTimeout(() => {
-            startAutoScroll();
-        }, 1000);
-
         function updateCountdown() {
             const startDate = new Date('2025-02-07T00:00:00');
             const now = new Date();
