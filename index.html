@@ -577,22 +577,7 @@
             photos.forEach(photo => {
                 const photoRect = photo.getBoundingClientRect();
                 
-                    // Se a foto saiu completamente pela esquerda
-                if (photoRect.right < galleryRect.left - 50) {
-                    isScrolling = true;
-                    const scrollBefore = gallery.scrollLeft;
-                    gallery.appendChild(photo);
-                    gallery.scrollLeft = scrollBefore - photo.offsetWidth - 10;
-                    setTimeout(() => isScrolling = false, 50);
-                }
-                // Se a foto saiu completamente pela direita (scroll reverso)
-                else if (photoRect.left > galleryRect.right + 50) {
-                    isScrolling = true;
-                    const scrollBefore = gallery.scrollLeft;
-                    gallery.insertBefore(photo, gallery.firstChild);
-                    gallery.scrollLeft = scrollBefore + photo.offsetWidth + 10;
-                    setTimeout(() => isScrolling = false, 50);
-                }
+         
              
             });
         });
